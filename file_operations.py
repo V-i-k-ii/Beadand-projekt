@@ -1,4 +1,6 @@
 #Saját modul
+# file_operations.py
+
 def save_data_to_file(name, username, email, password):
     with open("user_data.txt", "a") as file:
         file.write(f"Name: {name}\nUsername: {username}\nEmail: {email}\nPassword: {password}\n")
