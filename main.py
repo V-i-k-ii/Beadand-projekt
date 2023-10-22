@@ -27,10 +27,10 @@ def load_user_data():
     if data:
         data_str = "User Data:\n"
         for name, username, email, password in data:
-            data_str += f"Name: {name}, Username: {username}, Email: {email}, Password: {password}\n"
+            data_str += f"Name: {name}, Username: {username}, E-mail: {email}, Password: {password}\n"
         messagebox.showinfo("User Data", data_str)
     else:
-        messagebox.showinfo("User Data", "No data found.")
+        messagebox.showinfo("User Data", "No data found!")
 
 root = tk.Tk()
 root.title("User Registration")
