@@ -17,7 +17,7 @@ def load_data_from_file():
                     name = line.strip().split(": ")[1]
                 elif line.startswith("Username: "):
                     username = line.strip().split(": ")[1]
-                elif line.startswith("E-mail: "):
+                elif line.startswith("Email: "):
                     email = line.strip().split(": ")[1]
                 elif line.startswith("Password: "):
                     password = line.strip().split(": ")[1]
