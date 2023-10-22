@@ -14,7 +14,13 @@ def save_user_data():
 
 def load_user_data():
     data = load_data_from_file()
-    messagebox.showinfo("User Data", data)
+    if data:
+        data_str = "User Data:\n"
+        for name, age in data:
+            data_str += f"Name: {name}, Age: {age}\n"
+        messagebox.showinfo("User Data", data_str)
+    else:
+        messagebox.showinfo("User Data", "No data found.")
 
 root = tk.Tk()
 root.title("User Data Management")
