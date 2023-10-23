@@ -1,17 +1,4 @@
-
 Name: Teszt Elek
-Username: tesztelek01
-Email: teszt@teszt.hu
-Password: Teszt123
-Name: Rozs Viktória
-Username: rozs.viktooria
-Email: rozs.viktooria@gmail.com
-Password: Viki1017
-Name: Próba János
-Username: probaj
-Email: proba@proba.hu
-Password: Proba012
-Name: Ez Az
-Username: Ezaz
-Email: ezaz.azez@ezaz.com
-Password: Ezaz1017
+Username: tesztelek
+Email: teszt@elek.com
+Password: teszt1

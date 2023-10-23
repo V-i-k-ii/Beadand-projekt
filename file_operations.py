@@ -1,5 +1,4 @@
-#Saját modul
-# file_operations.py
+# Saját modul
 
 def save_data_to_file(name, username, email, password):
     with open("user_data.txt", "a") as file:
@@ -27,3 +26,8 @@ def load_data_from_file():
         return data
     except FileNotFoundError:
         return []
+
+def is_username_unique(username):
+    data = load_data_from_file()
+    usernames = [entry[1] for entry in data]
+    return username not in usernames
