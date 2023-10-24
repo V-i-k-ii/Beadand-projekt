@@ -1,0 +1,8 @@
+Name: Proba Janos
+Username: probajanos
+Email: proba@janos.com
+Password: proba
+Name: Teszt Elek
+Username: tesztelek
+Email: elek@teszt.hu
+Password: teszt
