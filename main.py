@@ -34,6 +34,7 @@ def login_user():
 
     messagebox.showerror("Error", "Helytelen felhasználónév vagy jelszó!")
 
+
 def switch_to_login_window():
     global login_username_entry, login_password_entry
 
@@ -42,14 +43,17 @@ def switch_to_login_window():
 
     # Létrehozzuk a bejelentkezési ablakot
     login_window = tk.Tk()
+
+    login_window.geometry("300x150")
+    login_window.config(bg="#FFFDD0")
     login_window.title("Belépés")
 
-    login_username_label = tk.Label(login_window, text="Felhasználónév:")
+    login_username_label = tk.Label(login_window, text="Felhasználónév:", bg="#FFFDD0")
     login_username_label.pack()
     login_username_entry = tk.Entry(login_window)
     login_username_entry.pack()
 
-    login_password_label = tk.Label(login_window, text="Jelszó:")
+    login_password_label = tk.Label(login_window, text="Jelszó:", bg="#FFFDD0")
     login_password_label.pack()
     login_password_entry = tk.Entry(login_window, show="*")
     login_password_entry.pack()
@@ -58,7 +62,19 @@ def switch_to_login_window():
         root.deiconify()  # Visszatérünk a regisztrációs ablakhoz
         login_window.destroy()  # Bejelentkezési ablak bezárása
 
-    login_button = tk.Button(login_window, text="Belépés", command=login_user)
+    login_button = tk.Button(
+        login_window,
+        text="Belépés",
+        command=login_user,
+        bg="lightblue",
+        activebackground="#FFFDD0",
+        fg="black",
+        font=("Arial", 10),
+        padx=10,  # X tengely mentén való padding
+        pady=5,  # Y tengely mentén való padding
+        relief=tk.RAISED
+    )
+
     login_button.pack()
 
     # Bejelentkezési ablak bezárásakor visszatérünk a regisztrációs ablakhoz
@@ -68,32 +84,57 @@ def switch_to_login_window():
 
 root = tk.Tk()
 
+root.configure(bg="#FFFDD0")
+root.geometry("400x250")
+
 root.title("Regisztráció")
 
-name_label = tk.Label(root, text="Név:")
+name_label = tk.Label(root, text="Név:", bg="#FFFDD0")
 name_label.pack()
 name_entry = tk.Entry(root)
 name_entry.pack()
 
-username_label = tk.Label(root, text="Felhasználónév:")
+username_label = tk.Label(root, text="Felhasználónév:", bg="#FFFDD0")
 username_label.pack()
 username_entry = tk.Entry(root)
 username_entry.pack()
 
-email_label = tk.Label(root, text="E-mail:")
+email_label = tk.Label(root, text="E-mail:", bg="#FFFDD0")
 email_label.pack()
 email_entry = tk.Entry(root)
 email_entry.pack()
 
-password_label = tk.Label(root, text="Jelszó:")
+password_label = tk.Label(root, text="Jelszó:", bg="#FFFDD0")
 password_label.pack()
 password_entry = tk.Entry(root, show="*")
 password_entry.pack()
 
-register_button = tk.Button(root, text="Regisztráció", command=save_user_data)
+register_button = tk.Button(
+    root,
+    text="Regisztráció",
+    command=save_user_data,
+    bg="lightblue",
+    activebackground="#FFFDD0",
+    fg="black",
+    font=("Arial", 10),
+    padx=10,  # X tengely mentén való padding
+    pady=5,  # Y tengely mentén való padding
+    relief=tk.RAISED
+)
 register_button.pack()
 
-login_switch_button = tk.Button(root, text="Váltás beléptetésre", command=switch_to_login_window)
+login_switch_button = tk.Button(
+    root,
+    text="Váltás beléptetésre",
+    command=switch_to_login_window,
+    bg="lightblue",
+    activebackground="#FFFDD0",
+    fg="black",
+    font=("Arial", 10),
+    padx=10,  # X tengely mentén való padding
+    pady=5,  # Y tengely mentén való padding
+    relief=tk.RAISED
+)
 login_switch_button.pack()
 
 root.mainloop()

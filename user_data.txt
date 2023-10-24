@@ -1,4 +1,0 @@
-Name: Teszt Elek
-Username: tesztelek
-Email: teszt@elek.com
-Password: teszt1
