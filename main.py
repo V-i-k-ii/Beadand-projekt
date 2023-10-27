@@ -2,14 +2,23 @@ import customtkinter #pip install customtkinter, packaging
 from tkinter import *
 from tkinter import messagebox
 
-def button_click(value):
-    print(f"Button clicked: {value}")
+def button_click(number):
+    equation_entry.insert(END, number)
 
 def clear():
-    print("Button clicked")
+    equation_entry.delete(0, END)
 
 def calculate():
-    print("Caculate")
+    try:
+        equation = equation_entry.get()
+        new_equation = equation.replace("X","*")
+        result = eval(new_equation)
+        clear()
+        equation_entry.insert(0, result)
+    except ZeroDivisionError:
+        messagebox.showerror("Error", "0-val nem osztunk!")
+    except:
+        messagebox.showerror("Error", "Adjon meg valid értékeket!")
 
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
 customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
@@ -60,7 +69,7 @@ b11_button.place(x=80, y=215)
 b12_button = customtkinter.CTkButton(app, command=clear, font=font1, text_color="#fff", text="C", fg_color="red", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
 b12_button.place(x=150, y=215)
 
-b13_button = customtkinter.CTkButton(app, command=calculate, font=font1, text_color="#fff", text="=", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=280)
+b13_button = customtkinter.CTkButton(app, font=font1, command=calculate, text_color="#fff", text="=", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=280)
 b13_button.place(x=10, y=255)
 
 b14_button = customtkinter.CTkButton(app, command=lambda: button_click("+"), font=font1, text_color="#fff", text="+", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
