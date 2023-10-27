@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 
 def button_click(number):
-    equation_entry.insert(END, number)
+    equation_entry.insert(END,number)
 
 def clear():
     equation_entry.delete(0, END)
