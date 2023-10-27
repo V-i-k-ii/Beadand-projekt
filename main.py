@@ -20,6 +20,12 @@ def calculate():
     except:
         messagebox.showerror("Error", "Adjon meg valid értékeket!")
 
+def save_result():
+    result = equation_entry.get()
+    with open("szamologep_eredmeny.txt", "a") as file:
+        file.write(result + '\n')  # Új sorban fűzi hozzá az eredményt
+    messagebox.showinfo("Mentés", "Eredmény mentve!")
+
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
 customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
@@ -69,8 +75,8 @@ b11_button.place(x=80, y=215)
 b12_button = customtkinter.CTkButton(app, command=clear, font=font1, text_color="#fff", text="C", fg_color="red", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
 b12_button.place(x=150, y=215)
 
-b13_button = customtkinter.CTkButton(app, font=font1, command=calculate, text_color="#fff", text="=", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=280)
-b13_button.place(x=10, y=255)
+b13_button = customtkinter.CTkButton(app, font=font1, command=calculate, text_color="#fff", text="=", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=170)
+b13_button.place(x=110, y=255)
 
 b14_button = customtkinter.CTkButton(app, command=lambda: button_click("+"), font=font1, text_color="#fff", text="+", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
 b14_button.place(x=220, y=80)
@@ -83,5 +89,8 @@ b16_button.place(x=220, y=170)
 
 b17_button = customtkinter.CTkButton(app, command=lambda: button_click("/"), font=font1, text_color="#fff", text="/", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
 b17_button.place(x=220, y=215)
+
+save_button = customtkinter.CTkButton(app, command=save_result, text="Mentés", font=font1, text_color="#fff", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=80)
+save_button.place(x=10, y=255)
 
 app.mainloop()
