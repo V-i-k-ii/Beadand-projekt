@@ -1,140 +1,78 @@
-import tkinter as tk
+import customtkinter #pip install customtkinter, packaging
+from tkinter import *
 from tkinter import messagebox
-from file_operations import save_data_to_file, load_data_from_file, is_username_unique
 
-def save_user_data():
-    name = name_entry.get()
-    username = username_entry.get()
-    email = email_entry.get()
-    password = password_entry.get()
+def button_click(value):
+    print(f"Button clicked: {value}")
 
-    if name and username and email and password:
-        if is_username_unique(username):
-            save_data_to_file(name, username, email, password)
-            messagebox.showinfo("Sikerült!", "Sikeres regisztráció!")
-            switch_to_login_window()
-        else:
-            messagebox.showerror("Error", "A felhasználónév már létezik. Kérlek válassz egy másikat.")
-    else:
-        messagebox.showerror("Error", "Az összes adatot adja meg.")
+def clear():
+    print("Button clicked")
 
-def login_user():
-    username = login_username_entry.get()
-    password = login_password_entry.get()
+def calculate():
+    print("Caculate")
 
-    if not username or not password:
-        messagebox.showerror("Error", "A felhasználó és a jelszót is adja meg.")
-        return
+customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
+customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
-    data = load_data_from_file()
-    for entry in data:
-        if entry[1] == username and entry[3] == password:
-            messagebox.showinfo("Sikerült!", "Üdvözöljük!")
-            return
+app = customtkinter.CTk()  # CTk window készítés, úgy mint Tk
+app.title("Calculator")
+app.geometry("300x300")
+app.config(bg="#FF9912")
 
-    messagebox.showerror("Error", "Helytelen felhasználónév vagy jelszó!")
+font1 = ("Arial", 20, "bold")
 
+equation_entry = customtkinter.CTkEntry(app, font=font1, text_color="#000", fg_color="#fff", border_color="#000", bg_color="#FF9912", width=280, height=50)
+equation_entry.place(x=10, y=10)
 
-def switch_to_login_window():
-    global login_username_entry, login_password_entry
+b1_button = customtkinter.CTkButton(app, command=lambda: button_click("7"), font=font1, text_color="#fff", text="7", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b1_button.place(x=10, y=80)
 
-    # Elrejtjük a regisztrációs ablakot
-    root.withdraw()
+b2_button = customtkinter.CTkButton(app, command=lambda: button_click("8"), font=font1, text_color="#fff", text="8", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", corner_radius=10, border_width=2, cursor= "hand2", width=60)
+b2_button.place(x=80, y=80)
 
-    # Létrehozzuk a bejelentkezési ablakot
-    login_window = tk.Tk()
+b3_button = customtkinter.CTkButton(app, command=lambda: button_click("9"), font=font1, text_color="#fff", text="9", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b3_button.place(x=150, y=80)
 
-    login_window.geometry("300x150")
-    login_window.config(bg="#FFFDD0")
-    login_window.title("Belépés")
+b4_button = customtkinter.CTkButton(app, command=lambda: button_click("4"), font=font1, text_color="#fff", text="4", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b4_button.place(x=10, y=125)
 
-    login_username_label = tk.Label(login_window, text="Felhasználónév:", bg="#FFFDD0")
-    login_username_label.pack()
-    login_username_entry = tk.Entry(login_window)
-    login_username_entry.pack()
+b5_button = customtkinter.CTkButton(app, command=lambda: button_click("5"), font=font1, text_color="#fff", text="5", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b5_button.place(x=80, y=125)
 
-    login_password_label = tk.Label(login_window, text="Jelszó:", bg="#FFFDD0")
-    login_password_label.pack()
-    login_password_entry = tk.Entry(login_window, show="*")
-    login_password_entry.pack()
+b6_button = customtkinter.CTkButton(app, command=lambda: button_click("6"), font=font1, text_color="#fff", text="6", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b6_button.place(x=150, y=125)
 
-    def show_registration_window():
-        root.deiconify()  # Visszatérünk a regisztrációs ablakhoz
-        login_window.destroy()  # Bejelentkezési ablak bezárása
+b7_button = customtkinter.CTkButton(app, command=lambda: button_click("1"), font=font1, text_color="#fff", text="1", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b7_button.place(x=10, y=170)
 
-    login_button = tk.Button(
-        login_window,
-        text="Belépés",
-        command=login_user,
-        bg="lightblue",
-        activebackground="#FFFDD0",
-        fg="black",
-        font=("Arial", 10),
-        padx=10,  # X tengely mentén való padding
-        pady=5,  # Y tengely mentén való padding
-        relief=tk.RAISED
-    )
+b8_button = customtkinter.CTkButton(app, command=lambda: button_click("2"), font=font1, text_color="#fff", text="2", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b8_button.place(x=80, y=170)
 
-    login_button.pack()
+b9_button = customtkinter.CTkButton(app, command=lambda: button_click("3"), font=font1, text_color="#fff", text="3", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b9_button.place(x=150, y=170)
 
-    # Bejelentkezési ablak bezárásakor visszatérünk a regisztrációs ablakhoz
-    login_window.protocol("WM_DELETE_WINDOW", show_registration_window)
+b10_button = customtkinter.CTkButton(app, command=lambda: button_click("0"), font=font1, text_color="#fff", text="0", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", border_color="#000", border_width=2, cursor= "hand2", width=60)
+b10_button.place(x=10, y=215)
 
-    login_window.mainloop()
+b11_button = customtkinter.CTkButton(app, command=lambda: button_click("."), font=font1, text_color="#fff", text=".", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b11_button.place(x=80, y=215)
 
-root = tk.Tk()
+b12_button = customtkinter.CTkButton(app, command=clear, font=font1, text_color="#fff", text="C", fg_color="red", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b12_button.place(x=150, y=215)
 
-root.configure(bg="#FFFDD0")
-root.geometry("400x250")
+b13_button = customtkinter.CTkButton(app, command=calculate, font=font1, text_color="#fff", text="=", fg_color="#323d3b", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=280)
+b13_button.place(x=10, y=255)
 
-root.title("Regisztráció")
+b14_button = customtkinter.CTkButton(app, command=lambda: button_click("+"), font=font1, text_color="#fff", text="+", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b14_button.place(x=220, y=80)
 
-name_label = tk.Label(root, text="Név:", bg="#FFFDD0")
-name_label.pack()
-name_entry = tk.Entry(root)
-name_entry.pack()
+b15_button = customtkinter.CTkButton(app, command=lambda: button_click("-"), font=font1, text_color="#fff", text="-", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b15_button.place(x=220, y=125)
 
-username_label = tk.Label(root, text="Felhasználónév:", bg="#FFFDD0")
-username_label.pack()
-username_entry = tk.Entry(root)
-username_entry.pack()
+b16_button = customtkinter.CTkButton(app, command=lambda: button_click("X"), font=font1, text_color="#fff", text="x", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b16_button.place(x=220, y=170)
 
-email_label = tk.Label(root, text="E-mail:", bg="#FFFDD0")
-email_label.pack()
-email_entry = tk.Entry(root)
-email_entry.pack()
+b17_button = customtkinter.CTkButton(app, command=lambda: button_click("/"), font=font1, text_color="#fff", text="/", fg_color="green", hover_color="#05b314", bg_color="#FF9912", corner_radius=10, border_color="#000", border_width=2, cursor= "hand2", width=60)
+b17_button.place(x=220, y=215)
 
-password_label = tk.Label(root, text="Jelszó:", bg="#FFFDD0")
-password_label.pack()
-password_entry = tk.Entry(root, show="*")
-password_entry.pack()
-
-register_button = tk.Button(
-    root,
-    text="Regisztráció",
-    command=save_user_data,
-    bg="lightblue",
-    activebackground="#FFFDD0",
-    fg="black",
-    font=("Arial", 10),
-    padx=10,  # X tengely mentén való padding
-    pady=5,  # Y tengely mentén való padding
-    relief=tk.RAISED
-)
-register_button.pack()
-
-login_switch_button = tk.Button(
-    root,
-    text="Váltás beléptetésre",
-    command=switch_to_login_window,
-    bg="lightblue",
-    activebackground="#FFFDD0",
-    fg="black",
-    font=("Arial", 10),
-    padx=10,  # X tengely mentén való padding
-    pady=5,  # Y tengely mentén való padding
-    relief=tk.RAISED
-)
-login_switch_button.pack()
-
-root.mainloop()
+app.mainloop()
