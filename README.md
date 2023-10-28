@@ -5,6 +5,8 @@ A beadandó feladatomban egy egyszerű számológépet készítettem. A számol�
 Modulok és hozzá tartozó függvények: 
   customtkinter:
     CTk()
+    CTkButton()
+    CTkEntry()
   messagebox:
     showinfo(title, message)
     showerror(title, message)
@@ -14,7 +16,7 @@ Modulok és hozzá tartozó függvények:
     os.remove(filename)
   
   Saját modul (file_handler):
-    save_result_to_file()
-    list_results_from_file()
+    save_result_to_file(result, filename)
+    list_results_from_file(filename)
 
   
