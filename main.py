@@ -2,6 +2,7 @@ import customtkinter #pip install customtkinter, packaging
 from tkinter import *
 from tkinter import messagebox
 from file_handler import save_result_to_file, list_results_from_file
+import os
 
 def button_click(number):
     equation_entry.insert(END, number)
@@ -29,7 +30,13 @@ def list_results():
     results = list_results_from_file("szamologep_eredmeny.txt")
     messagebox.showinfo("Eredmények", results)
 def remove_result():
-    pass
+    # létezik-e a fájl
+    if os.path.exists("szamologep_eredmeny.txt"):
+        os.remove("szamologep_eredmeny.txt")
+        messagebox.showinfo("Törlés","Fájl törölve!")
+    # ha nem létezik
+    else:
+        messagebox.showwarning("Figyelem!", "A fájl nem létezik!")
 def remove_last_digit():
     current_equation = equation_entry.get()
     if current_equation:
